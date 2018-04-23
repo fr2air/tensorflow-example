@@ -1,6 +1,18 @@
 ---
 
 - step:
+    name: Hardware check
+    image: tensorflow/tensorflow:0.12.1-devel-gpu
+    command: nvidia-smi
+
+- step:
+    name: Environment check
+    image: busybox
+    command:
+      - printenv
+      - python --version
+
+- step:
     name: Train model
     image: gcr.io/tensorflow/tensorflow:1.5.0-devel-gpu
     command: python train.py {parameters}
